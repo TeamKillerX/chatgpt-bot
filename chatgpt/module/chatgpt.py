@@ -21,7 +21,7 @@ from config import OPENAI_API
 @ren.on_message(filters.command("ask") & filters.group)
 async def chatgpt(c: Client, m: Message):
     if len(m.command) == 1:
-        return await m.reply(f"use command <code>.{m.command[0]} [question]</code> to ask questions using the API.")
+        return await m.reply(f"use command <code>/{m.command[0]} [question]</code> to ask questions using the API.")
     randydev = m.text.split(" ", maxsplit=1)[1]
     headers = {
         "Content-Type": "application/json",
