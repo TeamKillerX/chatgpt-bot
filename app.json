@@ -1,0 +1,48 @@
+{
+    "name": "chatgpt",
+    "description": "",
+    "logo": "",
+    "keywords": [
+    "python3",
+    "telegram",
+    "bot",
+    "TeamKillerX",
+    "chatgpt",
+    "telegram-bot",
+    "pyrogram"
+    ],
+    "stack": "heroku-22",
+    "env": {
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "BOT_TOKEN": {
+        "description": "A Bot's token from Botfather",
+        "value": "",
+        "required": true
+      },
+      "OPENAI_API": {
+        "description": "get api key : openai.com",
+        "value": "",
+        "required": true
+      },
+    },
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+      ],
+      "formation": {
+          "worker": {
+              "quantity": 1,
+              "size": "eco"
+          }
+      }
+  }
