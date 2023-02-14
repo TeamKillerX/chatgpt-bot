@@ -45,3 +45,5 @@ Rendy@Ubuntu~ $ python3 bot.py
 ```
 https://github.com/TeamKillerX/chatgpt-bot
 ```
+### Donate
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.buymeacoffee.com/randydev)
