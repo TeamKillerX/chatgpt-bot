@@ -1,0 +1,5 @@
+requests
+pyrogram
+pykillerx
+httpx[http2]
+python-dotenv
