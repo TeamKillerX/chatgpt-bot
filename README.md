@@ -24,6 +24,10 @@ Rendy@Ubuntu~ $ nano config.py
 Rendy@Ubuntu~ $ python3 bot.py
 ```
 
+## Library
+* [Dan](https://github.com/pyrogram) For [Pyrogram](https://github.com/pyrogram/pyrogram)
+* [RandyDev](https://t.me/xtsea) For [Pykillerx](https://github.com/TeamKillerX/chatgpt-bot)
+
 ## Credits
 ```
 https://github.com/TeamKillerX/chatgpt-bot
