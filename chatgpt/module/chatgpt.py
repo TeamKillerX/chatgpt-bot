@@ -15,7 +15,7 @@ from pyrogram import *
 from pyrogram.types import *
 from pyrogram import Client as ren 
 from pyrogram.errors import MessageNotModified
-from pykillerx.helper.what import *
+from chatgpt.module.what import *
 from config import OPENAI_API 
 
 @ren.on_message(filters.command("ask") & filters.group)
