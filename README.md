@@ -41,18 +41,11 @@ Rendy@Ubuntu~ $ python3 bot.py
 ```console
 Rendy@Ubuntu~ $ sudo apt update -y && sudo apt upgrade -y
 
-Rendy@Ubuntu~ $ sudo apt-get install \
-                    ca-certificates \
-                    curl \
-                    wget \
-                    gnupg \
-                    lsb-release
+Rendy@Ubuntu~ $ sudo apt-get install -y ca-certificates curl wget gnupg lsb-release
 
 Rendy@Ubuntu~ $ sudo mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
-Rendy@Ubuntu~ $ echo \
-                 "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-                 $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+Rendy@Ubuntu~ $ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 Rendy@Ubuntu~ $ sudo apt-get update -y && sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 Rendy@Ubuntu~ $ mkdir chatgpt && cd chatgpt
