@@ -6,4 +6,4 @@ services:
         context: https://github.com/TeamKillerX/chatgpt-bot.git#main
       restart: on-failure
       env_file:
-        - .env
+        - config.env
