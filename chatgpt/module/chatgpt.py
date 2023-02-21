@@ -20,9 +20,17 @@ from config import OPENAI_API
 
 @ren.on_message(filters.command("ask") & filters.private | filters.group)
 async def chatgpt(c: Client, m: Message):
-    if len(m.command) == 1:
-        return await m.reply(f"use command <code>/{m.command[0]} [question]</code> to ask questions using the API.")
-    randydev = m.text.split(" ", maxsplit=1)[1]
+    randydev = (
+        m.text.split(None, 1)[1]
+        if len(
+            m.command,
+        )
+        != 1
+        else None
+    )
+    if not randydev:
+       await m.reply(f"use command <code>/{m.command[0]} [question]</code> to ask questions using the API.")
+       return
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {OPENAI_API}",
