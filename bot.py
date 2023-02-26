@@ -13,7 +13,8 @@ from pyrogram import Client
 from pyrogram import *
 from pyrogram.types import *
 from config import API_ID, API_HASH, BOT_TOKEN
-import config 
+
+
 logging.basicConfig(level=logging.INFO)
 
 if __name__ == "__main__":
@@ -29,4 +30,4 @@ app = Client(
 )
 
 app.run()
-app.idle()
+idle()
