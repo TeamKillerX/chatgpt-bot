@@ -43,15 +43,13 @@ async def chatgpt(c: Client, m: Message):
         "max_tokens": 1024,
         "n": 1,
         "stop": None,
-        "temperature": 0.9,
         "top_p": 0.3,
         "frequency_penalty": 0.5,
     }
-    ran = await m.reply("Wait a moment looking for your answer..", quote=True)
     try:
         response = (await http.post("https://api.openai.com/v1/completions", headers=headers, json=json_data)).json()
-        await ran.edit(response["choices"][0]["text"])
-    except MessageNotModified:
-        pass
+        await c.send_chat_action(m.chat.id, enums.ChatAction.TYPING)
+        await asyncio.sleep(5)
+        await c.send_message(m.chat.id, response["choices"][0]["text"], reply_to_message_id=m.id)
     except Exception:
-        await ran.edit("Yahh, sorry i can't get your answer.")
+        await c.send_message(m.chat.id, "Yahh, sorry i can't get your answer.", reply_to_message_id=m.id)
