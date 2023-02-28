@@ -27,6 +27,9 @@
 8. <b>Connect your github account</b>
 9. <b>Deploy Main branch.</b>
 
+### Deploy to Heroku
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/TeamKillerX/chatgpt-bot)
+
 
 ### Tutorial Vps
 ```console
@@ -61,6 +64,16 @@ Rendy@Ubuntu~ $ docker-compose logs chatgpt
 
 ### Library
 * [Dan](https://github.com/pyrogram) For [Pyrogram](https://github.com/pyrogram/pyrogram)
+
+
+### Contributors
+<b>you can pull requests here</b>
+https://github.com/TeamKillerX/chatgpt-bot/pulls
+
+<a href="https://github.com/TeamKillerX/chatgpt-bot/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=TeamKillerX/chatgpt-bot" />
+</a>
+
 
 ### Credits
 ```
