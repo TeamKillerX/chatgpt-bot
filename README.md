@@ -40,43 +40,37 @@ Rendy@Ubuntu~ $ nano config.py
 Rendy@Ubuntu~ $ python3 bot.py
 ```
 
-### Docker-Compose Vps
-```console
-Rendy@Ubuntu~ $ sudo apt update -y && sudo apt upgrade -y
+### Example payload 
 
-Rendy@Ubuntu~ $ sudo apt-get install -y ca-certificates curl wget gnupg lsb-release
+```python
+# chatGPT-3
 
-Rendy@Ubuntu~ $ sudo mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+payload = {
+   "model": "text-davinci-003", 
+   "prompt": "Hello World", 
+   "max_tokens": 200, 
+   "temperature": 0, 
+   "top_p": 1, 
+   "n": 1, 
+   "stream": False, 
+   "logprobs": None, 
+   "stop": None
+}
 
-Rendy@Ubuntu~ $ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+headers = {
+   "Content-Type": "application/json", 
+   "Authorization": f"Bearer {OPENAI_API}"
+}
 
-Rendy@Ubuntu~ $ sudo apt-get update -y && sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-Rendy@Ubuntu~ $ mkdir chatgpt && cd chatgpt
-Rendy@Ubuntu~ $ wget https://raw.githubusercontent.com/TeamKillerX/chatgpt-bot/main/sample_config.env -O config.env && wget https://raw.githubusercontent.com/TeamKillerX/chatgpt-bot/main/docker-compose.yml
-Rendy@Ubuntu~ $ nano config.env 
+url = "https://api.openai.com/v1/completions"
 
-// Fill allvar for it to work //
+response = requests.post(url, json=payload, headers=headers)
+data_example = response.json()
 
-Rendy@Ubuntu~ $ docker-compose up -d
-Rendy@Ubuntu~ $ docker-compose start
-Rendy@Ubuntu~ $ docker-compose logs chatgpt
+message_text = data_example["choices"][0]["text"]
+
+await message.edit_text(message_text) # await or client.send_message(message.chat.id, message_text, reply_to_message_id=message.id)
 ```
-
-
-### Installation termux steps
-
-1. Update termux: `apt-get update && apt-get upgrade -y`
-2. Install wget: `apt-get install wget -y`
-3. Install proot: `apt-get install proot -y`
-4. Install git: `apt-get install git -y`
-5. Go to HOME folder: `cd ~`
-6. Download script: `git clone https://github.com/MFDGaming/ubuntu-in-termux.git`
-7. Go to script folder: `cd ubuntu-in-termux`
-8. Give execution permission: `chmod +x ubuntu.sh`
-9. Run the script: `./ubuntu.sh -y`
-10. Now just start ubuntu: `./startubuntu.sh`
-
-
 ### Library
 * [Dan](https://github.com/pyrogram) For [Pyrogram](https://github.com/pyrogram/pyrogram)
 
