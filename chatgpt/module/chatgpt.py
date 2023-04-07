@@ -29,25 +29,12 @@ async def chatgpt(c: Client, m: Message):
     if not randydev:
        await m.reply(f"use command <code>/{m.command[0]} [question]</code> to ask questions using the API.")
        return
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {OPENAI_API}",
-    }
-
-    json_data = {
-        "prompt": randydev,
-        "model": "text-davinci-003",
-        "temperature": 0.5,
-        "max_tokens": 1024,
-        "n": 1,
-        "stop": None,
-        "top_p": 0.3,
-        "frequency_penalty": 0.5,
-    }
+    headers = {"Content-Type": "application/json", "Authorization": f"Bearer {OPENAI_API}"}
+    json_data = {"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": randydev}]}
     try:
-        response = (await http.post("https://api.openai.com/v1/completions", headers=headers, json=json_data)).json()
+        response = (await http.post("https://api.openai.com/v1/chat/completions", headers=headers, json=json_data)).json()
         await c.send_chat_action(m.chat.id, enums.ChatAction.TYPING)
         await asyncio.sleep(2)
-        await c.send_message(m.chat.id, response["choices"][0]["text"], reply_to_message_id=m.id)
+        await c.send_message(m.chat.id, response["choices"][0]["message"]["content"], reply_to_message_id=m.id)
     except Exception:
         await c.send_message(m.chat.id, "Yahh, sorry i can't get your answer.", reply_to_message_id=m.id)
