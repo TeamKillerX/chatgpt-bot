@@ -1,3 +1,12 @@
+# Copyright (C) 2020-2023 TeamKillerX <https://github.com/TeamKillerX>
+#
+# This file is part of TeamKillerX project,
+# and licensed under GNU Affero General Public License v3.
+# See the GNU Affero General Public License for more details.
+#
+# All rights reserved. See COPYING, AUTHORS.
+#
+
 # credits @xtsea
 
 from pyrogram import Client as app
@@ -6,7 +15,7 @@ from pyrogram.types import *
 from chatgpt.database import cli
 from config import ADMINS
 
-collection = cli["chatgpt"]["welcome"]
+collection = cli["chatgpt"]["users"]
 
 @app.on_message(filters.command("broadcast") & filters.user(ADMINS))
 async def broadcast(client: Client, message: Message):
