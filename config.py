@@ -7,3 +7,4 @@ API_ID = int(getenv("API_ID", 0))
 API_HASH = getenv("API_HASH", "")
 BOT_TOKEN = getenv("BOT_TOKEN", "")
 OPENAI_API = getenv("OPENAI_API", "") # get api key : https://platform.openai.com/account/api-keys
+MONGO_URL = getenv("MONGO_URL", "") # required https://mongodb.com
