@@ -3,3 +3,5 @@ pyrogram
 httpx[http2]
 python-dotenv
 aiohttp
+pymongo 
+motor
