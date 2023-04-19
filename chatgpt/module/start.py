@@ -12,7 +12,7 @@ from pyrogram import *
 from pyrogram.types import *
 from chatgpt.database import cli
 
-collection = cli["chatgpt"]["welcome"]
+collection = cli["chatgpt"]["users"]
 
 @ren.on_message(filters.command("start") & filters.private)
 async def start_bot(c: Client, m: Message):
