@@ -24,7 +24,7 @@ cmd = CMD_HANDLER
 
 @ren.on_message(filters.command(["ai", "ask"], cmd) & filters.private | filters.group)
 async def chatgpt(c: Client, m: Message):
-    randydev = (m.text.split(None, 1)[1] if len(m.command) != 1 else None)
+    randydev = m.text.split(" ", 1)[1] if len(m.command) > 1 else None
     if not randydev:
        await m.reply(f"use command <code>/{m.command[0]} [question]</code> to ask questions using the API.")
        return
