@@ -26,10 +26,10 @@ def get_openai_api_key(user_id):
         return None
 
 def broadcast_only_bots():
-    user = collection.find({})
-    for get_user in user:
+    blacklist = []
+    users = collection.find({})
+    for get_user in users:
         if get_user:
-            blacklist = get_user.get("user_id")
-            return blacklist
-        else:
-            return None
+            user_id = get_user.get("user_id")
+            blacklist.append(user_id)
+    return blacklist
