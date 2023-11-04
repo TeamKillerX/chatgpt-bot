@@ -2,6 +2,7 @@ from pyrogram.types import Message
 from pyrogram import *
 from pyrogram.types import *
 from pyrogram import Client as ren
+from config import ADMINS
 import database as db
 
 @ren.on_message(filters.command("broadcast") & filters.user(ADMINS))
