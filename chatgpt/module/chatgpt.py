@@ -25,7 +25,7 @@ async def update_db_key(client: Client, message: Message):
     user_id = message.from_user.id
     text = message.text.split(" ", 1)[1] if len(message.command) > 1 else None
     if not text:
-        await message.reply_text("Use Command /addkey apikey")
+        await message.reply_text("Use Command /addkey apikey\nGet Api from : [HERE](https://platform.openai.com/account/api-keys)", disable_web_page_preview=True)
         return
     db.add_openai_api_key(user_id, text)
     await message.reply_text(f"Successfully added api key: {text}")
