@@ -12,7 +12,7 @@ from pyrogram.types import Message
 from pyrogram import *
 from pyrogram.types import *
 from pyrogram import Client as ren
-from config import OPENAI_API 
+import database as db
 
 from RyuzakiLib.hackertools.openai import OpenAiToken
 
@@ -20,7 +20,15 @@ CMD_HANDLER = ["!", "/"]
 
 cmd = CMD_HANDLER
 
-openai_message = OpenAiToken(OPENAI_API)
+@ren.on_message(filters.command("addkey"))
+async def update_db_key(client: Client, message: Message):
+    user_id = message.from_user.id
+    text = message.text.split(" ", 1)[1] if len(message.command) > 1 else None
+    if not text:
+        await message.reply_text("Use Command /addkey apikey\nGet Api from : [HERE](https://platform.openai.com/account/api-keys)", disable_web_page_preview=True)
+        return
+    db.add_openai_api_key(user_id, text)
+    await message.reply_text(f"Successfully added api key: {text}")
 
 @ren.on_message(filters.command(["ai", "ask"], cmd) & filters.private | filters.group)
 async def chatgpt(c: Client, m: Message):
@@ -29,14 +37,19 @@ async def chatgpt(c: Client, m: Message):
        await m.reply(f"use command <code>/{m.command[0]} [question]</code> to ask questions using the API.")
        return
     try:
-        output_text = openai_message.message_output(randydev)
-        await c.send_chat_action(m.chat.id, enums.ChatAction.TYPING)
-        await asyncio.sleep(2)
-        await c.send_message(
-            m.chat.id,
-            output_text,
-            reply_to_message_id=m.id
-        )
+        user = db.get_openai_api_key(m.from_user.id)
+        if user:
+            openai_message = OpenAiToken(user)
+            output_text = openai_message.message_output(randydev)
+            await c.send_chat_action(m.chat.id, enums.ChatAction.TYPING)
+            await asyncio.sleep(2)
+            await c.send_message(
+                m.chat.id,
+                output_text,
+                reply_to_message_id=m.id
+            )
+        else:
+            await c.send_message(m.chat.id, "Not Found User")
     except Exception:
         await c.send_message(m.chat.id, "Yahh, sorry i can't get your answer.", reply_to_message_id=m.id)
 
@@ -47,13 +60,18 @@ async def dalle(c: Client, m: Message):
        await m.reply(f"use command <code>/{m.command[0]} [question]</code> to dall e image generator using the API.")
        return
     try:
-        output_photo = openai_message.photo_output(randydev)
-        await c.send_chat_action(m.chat.id, enums.ChatAction.PHOTO)
-        await asyncio.sleep(2)
-        await c.send_photo(
-            m.chat.id,
-            output_photo,
-            reply_to_message_id=m.id
-        )
+        user = db.get_openai_api_key(m.from_user.id)
+        if user:
+            openai_message = OpenAiToken(user)
+            output_photo = openai_message.photo_output(randydev)
+            await c.send_chat_action(m.chat.id, enums.ChatAction.PHOTO)
+            await asyncio.sleep(2)
+            await c.send_photo(
+                m.chat.id,
+                output_photo,
+                reply_to_message_id=m.id
+            )
+        else:
+            await client.send_message(m.chat.id, "Not found user")
     except Exception:
         await c.send_message(m.chat.id, "Yahh, sorry i can't get your answer.", reply_to_message_id=m.id)

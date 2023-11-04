@@ -20,7 +20,7 @@
 1. <b>Go to github, your fork</b>
 2. <b>Delete your fork. If you didn't fork, go to step</b>
 3. <b>Fork repo.</b>
-4. <b>edit</b> 👉 [config.py](https://github.com/TeamKillerX/chatgpt-bot/blob/main/config.py)
+4. <b>edit</b> 👉 [.env](https://github.com/TeamKillerX/chatgpt-bot/blob/main/.env_sample)
 5. <b>Go to heroku</b>
 6. <b>Desktop view</b>
 7. <b>Go to deploy tab</b>
@@ -36,7 +36,8 @@
 Rendy@Ubuntu~ $ git clone https://github.com/TeamKillerX/chatgpt-bot
 Rendy@Ubuntu~ $ cd chatgpt-bot
 Rendy@Ubuntu~ $ pip3 install -r requirements.txt
-Rendy@Ubuntu~ $ nano config.py
+Rendy@Ubuntu~ $ cp .env_sample .env
+Rendy@Ubuntu~ $ nano .env
 Rendy@Ubuntu~ $ python3 bot.py
 ```
 

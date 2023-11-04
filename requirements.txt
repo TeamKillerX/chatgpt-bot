@@ -3,3 +3,4 @@ pyrogram
 python-dotenv
 aiohttp
 RyuzakiLib
+pymongo
