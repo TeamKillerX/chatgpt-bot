@@ -2,9 +2,7 @@ import os
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import pymongo
-
-load_dotenv()
-MONGO_URL= os.getenv("MONGO_URL")
+from config import MONGO_URL
 
 client = MongoClient(MONGO_URL)
 db = client["chatgpt"]
