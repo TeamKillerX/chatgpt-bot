@@ -17,8 +17,7 @@ def add_openai_api_key(user_id, api_key):
     return collection.update_one({"user_id": user_id}, {"$set": update_doc}, upsert=True)
 
 def get_openai_api_key(user_id):
-    user = collection.find_one({"user_id": user_id})
-    if user:
+    if user := collection.find_one({"user_id": user_id}):
         return user.get("api_key")
     else:
         return None

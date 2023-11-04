@@ -11,8 +11,7 @@ async def broadcast_user(client: Client, message: Message):
     if not text:
         await message.reply_text("Use Command /broadcast text")
         return
-    blacklist = db.broadcast_only_bots()
-    if blacklist:
+    if blacklist := db.broadcast_only_bots():
         if message.from_user.id not in blacklist:
             await client.send_message(message.from_user.id, text=text)
         else:

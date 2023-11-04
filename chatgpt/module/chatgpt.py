@@ -37,8 +37,7 @@ async def chatgpt(c: Client, m: Message):
        await m.reply(f"use command <code>/{m.command[0]} [question]</code> to ask questions using the API.")
        return
     try:
-        user = db.get_openai_api_key(m.from_user.id)
-        if user:
+        if user := db.get_openai_api_key(m.from_user.id):
             openai_message = OpenAiToken(user)
             output_text = openai_message.message_output(randydev)
             await c.send_chat_action(m.chat.id, enums.ChatAction.TYPING)
@@ -60,8 +59,7 @@ async def dalle(c: Client, m: Message):
        await m.reply(f"use command <code>/{m.command[0]} [question]</code> to dall e image generator using the API.")
        return
     try:
-        user = db.get_openai_api_key(m.from_user.id)
-        if user:
+        if user := db.get_openai_api_key(m.from_user.id):
             openai_message = OpenAiToken(user)
             output_photo = openai_message.photo_output(randydev)
             await c.send_chat_action(m.chat.id, enums.ChatAction.PHOTO)
