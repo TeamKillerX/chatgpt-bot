@@ -3,9 +3,8 @@ from os import getenv
 from dotenv import load_dotenv
 
 load_dotenv()
-
-API_ID = int(os.getenv("API_ID"))
-API_HASH = os.getenv("API_HASH")
-ADMINS = int(os.getenv("ADMINS"))
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-MONGO_URL = os.getenv("MONGO_URL")
+API_ID = os.environ["API_ID"]
+API_HASH = os.environ["API_HASH"]
+ADMINS = os.environ["ADMINS"]
+BOT_TOKEN = os.environ["BOT_TOKEN"]
+MONGO_URL = os.environ["MONGO_URL"]
