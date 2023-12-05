@@ -8,17 +8,60 @@
 #
 
 import asyncio
+import database as db
 from pyrogram.types import Message
 from pyrogram import *
 from pyrogram.types import *
 from pyrogram import Client as ren
-import database as db
 
+from RyuzakiLib.hackertools.chatgpt import RendyDevChat
 from RyuzakiLib.hackertools.openai import OpenAiToken
 
 CMD_HANDLER = ["!", "/"]
 
 cmd = CMD_HANDLER
+
+@ren.on_message(filters.command(["ai2"]))
+async def chatgpt2_(client: Client, message: Message):
+    user_id = message.from_user.id
+    query = message.text.split(" ", 1)[1] if len(message.command) > 1 else None
+    if not query:
+        await message.reply_text("Use command /ai question")
+        return
+    try:
+        send_message = RendyDevChat(query).get_response_model(model_id=1, is_models=True)
+        await client.send_message(message.chat.id, send_message, reply_to_message_id=message.id, disable_web_page_preview=True)
+    except Exception as e:
+        await message.reply_text(str(e))
+        return
+
+@ren.on_message(filters.command(["bingai"]))
+async def bingai_(client: Client, message: Message):
+    user_id = message.from_user.id
+    query = message.text.split(" ", 1)[1] if len(message.command) > 1 else None
+    if not query:
+        await message.reply_text("Use command /ai question")
+        return
+    try:
+        send_message = RendyDevChat(query).get_response_bing(bing=True)
+        await client.send_message(message.chat.id, send_message, reply_to_message_id=message.id, disable_web_page_preview=True)
+    except Exception as e:
+        await message.reply_text(str(e))
+        return
+
+@ren.on_message(filters.command(["jokeai"]))
+async def jokeai_(client: Client, message: Message):
+    user_id = message.from_user.id
+    query = message.text.split(" ", 1)[1] if len(message.command) > 1 else None
+    if not query:
+        await message.reply_text("Use command /ai question")
+        return
+    try:
+        send_message = RendyDevChat(query).get_response_beta(joke=True)
+        await client.send_message(message.chat.id, send_message, reply_to_message_id=message.id, disable_web_page_preview=True)
+    except Exception as e:
+        await message.reply_text(str(e))
+        return
 
 @ren.on_message(filters.command("addkey"))
 async def update_db_key(client: Client, message: Message):
