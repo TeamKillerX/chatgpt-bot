@@ -5,7 +5,7 @@ from pyrogram import Client as ren
 from config import ADMINS
 import database as db
 
-@ren.on_message(filters.command("broadcast") & filters.user(ADMINS))
+@ren.on_message(filters.command("broadcast") & filters.user(int(ADMINS)))
 async def broadcast_user(client: Client, message: Message):
     text = message.text.split(" ", 1)[1] if len(message.command) > 1 else None
     if not text:
