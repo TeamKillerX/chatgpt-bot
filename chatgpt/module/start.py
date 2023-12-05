@@ -13,19 +13,20 @@ from pyrogram.types import *
 import database as db
 
 @ren.on_message(filters.command("start") & filters.private)
-async def start_welcome(c: Client, m: Message):
-    user_id = m.from_user.id
-    first_name = m.from_user.first_name
-    start_welcome = f"Hey {m.from_user.mention}\n\nWelcome to my bot! Send me a message and I will use the OpenAI API to generate a response.\n\nExample `/ask hello world`"
-    start_button = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(
-                    "ADD ME",
-                    url=f"https://t.me/{c.me.username}?startgroup=True"
-                )
-            ]
-        ]
-    )
+async def start_welcome(client: Client, message: Message):
+    MESSAGE = f"""
+Hey there {message.from_user.mention}
+
+• Welcome to my bot! Send me a message and I will use the Assistant Bot to generate a response.
+
+- Command: /ai question 
+- Command: /ai2 question
+- Command: /bingai question
+- Command: /jokeai question
+- Command: /dalle image generator
+- Command: /addkey setting api key
+
+• Developer : t.me/xtdevs
+"""
     db.start_bot(user_id)
-    await m.reply_text(start_welcome, reply_markup=start_button)
+    await client.send_message(message.chat.id, MESSAGE, reply_to_message_id=message.id, disable_web_page_preview=True)
