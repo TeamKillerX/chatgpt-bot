@@ -27,11 +27,6 @@
         "description": "A Bot's token from Botfather",
         "value": "",
         "required": true
-      },
-      "OPENAI_API": {
-        "description": "get api key : openai.com",
-        "value": "",
-        "required": true
       }
     },
     "buildpacks": [
