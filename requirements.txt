@@ -2,5 +2,5 @@ requests
 pyrogram
 python-dotenv
 aiohttp
-RyuzakiLib
+git+https://github.com/TeamKillerX/RyuzakiLib
 pymongo
