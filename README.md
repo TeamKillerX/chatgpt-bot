@@ -41,37 +41,6 @@ Rendy@Ubuntu~ $ nano .env
 Rendy@Ubuntu~ $ python3 bot.py
 ```
 
-### Example payload 
-
-```python
-# chatGPT-3
-
-payload = {
-   "model": "text-davinci-003", 
-   "prompt": "Hello World", 
-   "max_tokens": 200, 
-   "temperature": 0, 
-   "top_p": 1, 
-   "n": 1, 
-   "stream": False, 
-   "logprobs": None, 
-   "stop": None
-}
-
-headers = {
-   "Content-Type": "application/json", 
-   "Authorization": f"Bearer {OPENAI_API}"
-}
-
-url = "https://api.openai.com/v1/completions"
-
-response = requests.post(url, json=payload, headers=headers)
-data_example = response.json()
-
-message_text = data_example["choices"][0]["text"]
-
-await message.edit_text(message_text) # await or client.send_message(message.chat.id, message_text, reply_to_message_id=message.id)
-```
 ### Library
 * [Dan](https://github.com/pyrogram) For [Pyrogram](https://github.com/pyrogram/pyrogram)
 
